@@ -141,6 +141,7 @@ password = 密码
 
 ```
 # 参考 https://www.freesion.com/article/58051228882/
+# https://www.codenong.com/af301fe89b55706ca0c2/
 
 # 1、安装poetry
 pip install poetry
@@ -156,7 +157,7 @@ poetry install
 # 5、编译，生成dist
 poetry build
 
-# 6、发布
+# 6、发布(poetry config pypi-token.pypi 配置token)
 poetry publish
 
 ```
