@@ -11,7 +11,7 @@ from nonebot.adapters.onebot.v11 import (
     MessageEvent,
     PrivateMessageEvent,
 )
-from nonebot.params import CommandArg, ShellCommandArgv, State
+from nonebot.params import CommandArg, ShellCommandArgv
 from nonebot.rule import ArgumentParser, ParserExit
 
 
@@ -39,7 +39,7 @@ except:
 catch_str = on_command("图片来源", aliases={"trace", "图片定位"})
 
 @catch_str.handle()
-async def _(arg: Message = CommandArg(), state: T_State = State()):
+async def _(state: T_State, arg: Message = CommandArg()):
     msg = arg
     if msg:
         state["src_img"] = msg
@@ -47,7 +47,7 @@ async def _(arg: Message = CommandArg(), state: T_State = State()):
 
 
 @catch_str.got("src_img", prompt="请发送需要识别的图片喵~")
-async def _(bot: Bot, event: MessageEvent, state: T_State = State()):
+async def _(bot: Bot, event: MessageEvent, state: T_State):
     # 信息源自 群聊或私聊
     msg_from = "group"
     # 判断消息类型
