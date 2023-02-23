@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot-plugin-trace-moe"
-version = "0.0.4"
+version = "0.1.0"
 description = "适用于nonebot2 v11的基于trace.moe的动画截图场景追溯插件"
 authors = ["Ikaros <327209194@qq.com>"]
 license = "MIT"
