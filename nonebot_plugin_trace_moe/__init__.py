@@ -103,11 +103,7 @@ async def _(bot: Bot, event: MessageEvent, state: T_State):
 
     nonebot.logger.info("url:" + url)
 
-    # 由于私聊的图片链接直接传给trace无法获取正确的图片，所以本地做了处理
-    if msg_from == "group":
-        info_json = await search_by_url(url)
-    else:
-        info_json = await search_by_img(url)
+    info_json = await search_by_img(url)
 
     # 为后面撤回消息做准备
     msg_ids = []
@@ -175,16 +171,6 @@ async def _(bot: Bot, event: MessageEvent, state: T_State):
     except (KeyError, TypeError, IndexError) as e:
         msg = '果咩，查询失败喵~接口可能挂了喵。\n' + str(e)
         await catch_str.finish(Message(f'{msg}'), at_sender=True)
-
-
-# 调用trace.moe API Search by image URL
-async def search_by_url(url):
-    API_URL = 'https://api.trace.moe/search?url=' + url
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url=API_URL) as response:
-            ret = await response.json()
-    # nonebot.logger.info(ret)
-    return ret
 
 
 # 调用trace.moe API Search by image upload
